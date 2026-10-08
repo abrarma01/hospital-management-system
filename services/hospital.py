@@ -306,11 +306,3 @@ class Hospital:
                     self.__employees[e.id] = e
 
         # Appointments (need live Patient & Doctor objects — aggregation)
-        if os.path.exists(self.APPOINTMENTS_FILE):
-            with open(self.APPOINTMENTS_FILE, "r") as f:
-                for ad in json.load(f):
-                    patient = self.__patients.get(ad["patient_id"])
-                    doctor = self.__doctors.get(ad["doctor_id"])
-                    if patient and doctor:
-                        appt = Appointment.from_dict(ad, patient, doctor)
-                        self.__appointments[appt.id] = appt
